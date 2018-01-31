@@ -186,7 +186,11 @@ export default class LValParser extends NodeUtils {
   parseSpread<T: RestElement | SpreadElement>(refShorthandDefaultPos: ?Pos): T {
     const node = this.startNode();
     this.next();
-    node.argument = this.parseMaybeAssign(false, refShorthandDefaultPos);
+    try {
+      node.argument = this.parseMaybeAssign(false, refShorthandDefaultPos);
+    } catch (e) {
+
+    }
     return this.finishNode(node, "SpreadElement");
   }
 
