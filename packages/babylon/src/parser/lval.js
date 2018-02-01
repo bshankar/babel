@@ -198,7 +198,7 @@ export default class LValParser extends NodeUtils {
   // Parses question element
   // for partial application of a function.
 
-  parseQuestion(refShorthandDefaultPos: ?Pos): Node {
+  parseQuestion(): Node {
     const node = this.startNode();
     this.next();
     return this.finishNode(node, "QuestionElement");
