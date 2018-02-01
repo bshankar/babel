@@ -187,11 +187,21 @@ export default class LValParser extends NodeUtils {
     const node = this.startNode();
     this.next();
     try {
-      node.argument = this.parseMaybeAssign(false, refShorthandDefaultPos);
-    } catch (e) {
-
-    }
+      // optionally parse the argument to the spread operator
+      // spread is now also used to indicate the rest of the arguments
+      // Needs better implementation?
+      node.argument = this.parseMaybeAssign(true, refShorthandDefaultPos);
+    } catch (e) {}
     return this.finishNode(node, "SpreadElement");
+  }
+
+  // Parses question element
+  // for partial application of a function.
+
+  parseQuestion(refShorthandDefaultPos: ?Pos): Node {
+    const node = this.startNode();
+    this.next();
+    return this.finishNode(node, "QuestionElement");
   }
 
   parseRest(): RestElement {
