@@ -1,0 +1,17 @@
+{
+  "name": "@babel/plugin-syntax-function-partial-application",
+  "version": "7.0.0-beta.39",
+  "description": "Allow parsing of tokens for partial application of a function",
+  "repository": "https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-function-partial-application",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "keywords": [
+    "babel-plugin"
+  ],
+  "peerDependencies": {
+    "@babel/core": "7.0.0-beta.39"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.39"
+  }
+}
