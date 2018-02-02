@@ -1,0 +1,21 @@
+{
+  "name": "@babel/plugin-proposal-function-partial-application",
+  "version": "7.0.0-beta.39",
+  "description": "Transform partially applied functions into call expressions",
+  "repository": "https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-function-partial-application",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "keywords": [
+    "babel-plugin"
+  ],
+  "dependencies": {
+    "@babel/plugin-syntax-function-partial-application": "7.0.0-beta.39"
+  },
+  "peerDependencies": {
+    "@babel/core": "7.0.0-beta.39"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.39",
+    "@babel/helper-plugin-test-runner": "7.0.0-beta.39"
+  }
+}
