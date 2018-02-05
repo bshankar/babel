@@ -1,5 +1,5 @@
 // import syntaxFunctionPartialApplication from "@babel/plugin-syntax-function-partial-application";
-// import { types as t } from "@babel/core";
+import { types as t } from "@babel/core";
 
 function isPartialApplication(node) {
   return (
@@ -13,14 +13,14 @@ export function nextArgument(args) {
   const nextUnderscoreCount =
     Math.max(
       ...args.map(e => {
-        if (typeof e === "string" && e.replace(/_*/, "") === "x") {
-          return countUnderscores(e);
+        if (typeof e.name === "string" && e.name.replace(/_*/, "") === "x") {
+          return countUnderscores(e.name);
         } else {
           return 0;
         }
       }),
     ) + 1;
-  return "_".repeat(nextUnderscoreCount) + "x";
+  return t.identifier("_".repeat(nextUnderscoreCount) + "x");
 }
 
 export default function() {
@@ -29,23 +29,28 @@ export default function() {
 
     visitor: {
       CallExpression(path) {
-        // make it work for ?
-        // then ...
-        // const { scope } = path;
         const { node } = path;
 
         if (node.arguments.some(e => isPartialApplication(e)) === false) {
           return;
         }
 
-        // partial application was detected
-        console.log("partial application was detected");
+        const params = node.arguments;
+        for (let i = 0; i < node.arguments.length; ++i) {
+          if (node.arguments[i].type === "QuestionElement") {
+            params[i] = nextArgument(params);
+          }
+        }
 
-        // const transformArgument = e => isPartialApplication(e) ? ""
-
-        // const params = node.arguments.map(e => (e))
-        // // const body =
-        // path.replaceWith(t.expressionStatement(t.arrowFunctionExpression(params, body)))
+        const body = { ...node, arguments: params };
+        path.replaceWith(
+          t.expressionStatement(
+            t.arrowFunctionExpression(
+              params.filter(e => e.type === "Identifier"),
+              body,
+            ),
+          ),
+        );
       },
     },
   };
