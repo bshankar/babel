@@ -1,0 +1,21 @@
+{
+  "name": "@babel/plugin-function-composition",
+  "version": "7.0.0-beta.39",
+  "description": "Compose functions with the `+>` operator",
+  "repository": "https://github.com/bshankar/babel/tree/compose_operator/packages/babel-plugin-function-composition",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "keywords": [
+    "babel-plugin"
+  ],
+  "dependencies": {
+    "@babel/plugin-syntax-function-partial-application": "7.0.0-beta.39"
+  },
+  "peerDependencies": {
+    "@babel/core": "7.0.0-beta.39"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.39",
+    "@babel/helper-plugin-test-runner": "7.0.0-beta.39"
+  }
+}
