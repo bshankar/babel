@@ -525,6 +525,12 @@ export default class Tokenizer extends LocationParser {
       return;
     }
 
+    // '+>'
+    if (next === charCodes.greaterThan) {
+      this.finishOp(tt.compose, 2);
+      return;
+    }
+
     if (next === charCodes.equalsTo) {
       this.finishOp(tt.assign, 2);
     } else {
