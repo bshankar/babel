@@ -7,10 +7,11 @@ export default function() {
         const { node } = path;
         const { operator } = node;
 
-        if (operator !== "+>") {
+        if (operator !== "*>") {
           return;
         }
 
+        console.log("compose operator");
         // x => g(f(x))
         const args = [t.identifier("x")];
         const body = t.callExpression(node.right, [

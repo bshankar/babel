@@ -131,7 +131,7 @@ export const types: { [name: string]: TokenType } = {
   incDec: new TokenType("++/--", { prefix, postfix, startsExpr }),
   bang: new TokenType("!", { beforeExpr, prefix, startsExpr }),
   tilde: new TokenType("~", { beforeExpr, prefix, startsExpr }),
-  compose: new BinopTokenType("+>", 0),
+  compose: new BinopTokenType("*>", 0),
   pipeline: new BinopTokenType("|>", 0),
   nullishCoalescing: new BinopTokenType("??", 1),
   logicalOR: new BinopTokenType("||", 1),

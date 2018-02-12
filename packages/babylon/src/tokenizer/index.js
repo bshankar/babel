@@ -451,6 +451,13 @@ export default class Tokenizer extends LocationParser {
       type = tt.exponent;
     }
 
+    // Compose operator *>
+    if (code === charCodes.asterisk && next === charCodes.greaterThan) {
+      width++;
+      next = this.input.charCodeAt(this.state.pos + 2);
+      type = tt.compose;
+    }
+
     if (next === charCodes.equalsTo && !exprAllowed) {
       width++;
       type = tt.assign;
@@ -522,12 +529,6 @@ export default class Tokenizer extends LocationParser {
         return;
       }
       this.finishOp(tt.incDec, 2);
-      return;
-    }
-
-    // '+>'
-    if (next === charCodes.greaterThan) {
-      this.finishOp(tt.compose, 2);
       return;
     }
 
